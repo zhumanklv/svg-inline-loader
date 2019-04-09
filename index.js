@@ -62,7 +62,7 @@ function SVGInlineLoader(content) {
     // Configuration
     var query = loaderUtils.parseQuery(this.query);
 
-    return "module.exports = " + JSON.stringify(getExtractedSVG(content, query));
+    return "/** @jsx createElement */\nimport {createElement} from 'inferno-create-element';\nexport default (" + getExtractedSVG(content, query) + ");";
 }
 
 SVGInlineLoader.getExtractedSVG = getExtractedSVG;
