@@ -17,7 +17,10 @@ var regexSequences = [
     // SVG XML -> HTML5
     [/\<([A-Za-z]+)([^\>]*)\/\>/g, "<$1$2></$1>"], // convert self-closing XML SVG nodes to explicitly closed HTML5 SVG nodes
     [/\s+/g, " "],                                 // replace whitespace sequences with a single space
-    [/\> \</g, "><"]                               // remove whitespace between tags
+    [/\> \</g, "><"],                              // remove whitespace between tags
+
+    // Add className
+    [/<svg /g, "<svg className={className} "]
 ];
 
 function getExtractedSVG(svgStr, query) {
@@ -62,7 +65,7 @@ function SVGInlineLoader(content) {
     // Configuration
     var query = loaderUtils.parseQuery(this.query);
 
-    return "/** @jsx createElement */\nimport {createElement} from 'inferno-create-element';\nexport default () => (" + getExtractedSVG(content, query) + ");";
+    return "/** @jsx createElement */\nimport {createElement} from 'inferno-create-element';\nexport default ({className}) => (" + getExtractedSVG(content, query) + ");";
 }
 
 SVGInlineLoader.getExtractedSVG = getExtractedSVG;
