@@ -64,7 +64,7 @@ function SVGInlineLoader(content) {
 
     const svgString = getExtractedSVG(content, query).replace(/<svg /g, "<svg className={className} ");
 
-    return "/** @jsx createElement */\nimport {createElement} from '~frontend/Framework';\nexport default ({className}) => (" + svgString + ");";
+    return "/** @jsx createElement */\nimport {createElement} from '~frontend/framework';\nexport default ({className}) => (" + svgString + ");";
 }
 
 SVGInlineLoader.getExtractedSVG = getExtractedSVG;
