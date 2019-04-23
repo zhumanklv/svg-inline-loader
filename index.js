@@ -15,9 +15,12 @@ var regexSequences = [
     [/<!--.*-->/gi, ""],
 
     // SVG XML -> HTML5
-    [/\<([A-Za-z]+)([^\>]*)\/\>/g, "<$1$2></$1>"], // convert self-closing XML SVG nodes to explicitly closed HTML5 SVG nodes
-    [/\s+/g, " "],                                 // replace whitespace sequences with a single space
-    [/\> \</g, "><"]                               // remove whitespace between tags
+    [/\<([A-Za-z]+)([^\>]*)\/\>/g, "<$1$2></$1>"],    // convert self-closing XML SVG nodes to explicitly closed HTML5 SVG nodes
+    [/\s+/g, " "],                                    // replace whitespace sequences with a single space
+    [/\> \</g, "><"],                                 // remove whitespace between tags
+    [/\<(svg.*?) xmlns="[^"]+"(.*?)>/g, "<$1$2>"],    // remove xmlns attribute
+    [/\<(svg.*?) version="[^"]+"(.*?)>/g, "<$1$2>"],  // remove version attribute
+    [/\<(svg.*?) xml:[^=]+="[^"]+"(.*?)>/g, "<$1$2>"] // remove xml: attributes
 ];
 
 function getExtractedSVG(svgStr, query) {
