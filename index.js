@@ -65,7 +65,7 @@ function SVGInlineLoader(content) {
     // Configuration
     var options = loaderUtils.getOptions(this);
 
-    const svgString = getExtractedSVG(content, options).replace(/<svg /g, "<svg className={className} " + (options.xmlns ? 'xmlns="http://www.w3.org/2000/svg" ' : ''));
+    const svgString = getExtractedSVG(content, options).replace(/<svg /g, "<svg className={className} " + (options && options.xmlns ? 'xmlns="http://www.w3.org/2000/svg" ' : ''));
 
     return "/** @jsx createElement */\nimport {createElement} from '~frontend/framework';\nexport default ({className}) => (" + svgString + ");";
 }
