@@ -63,9 +63,9 @@ function SVGInlineLoader(content) {
     this.cacheable && this.cacheable();
     this.value = content;
     // Configuration
-    var options = loaderUtils.getOptions(this);
+    var query = loaderUtils.parseQuery(this.query);
 
-    const svgString = getExtractedSVG(content, options).replace(/<svg /g, "<svg className={className} " + (options && options.xmlns ? 'xmlns="http://www.w3.org/2000/svg" ' : ''));
+    const svgString = getExtractedSVG(content, query).replace(/<svg /g, "<svg className={className} ");
 
     return "import * as React from '~frontend/framework';\nexport default ({className}) => (" + svgString + ");";
 }
