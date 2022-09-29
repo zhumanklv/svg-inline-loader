@@ -4,8 +4,7 @@ module.exports = {
     removingTags: [
         'title',
         'desc',
-        'defs',
-        'style'
+        'defs'
     ],
     removingTagAttrs: [],
     classPrefix: false,
