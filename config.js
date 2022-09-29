@@ -1,5 +1,5 @@
 module.exports = {
-    removeSVGTagAttrs: true,
+    removeSVGTagAttrs: false,
     removeTags: false,
     removingTags: [
         'title',
